@@ -8,6 +8,14 @@ import {
 
 const tables = [
   {
+    name: "users",
+    columns: [
+      { name: "email", type: "email", unique: true },
+      { name: "slug", type: "string" },
+      { name: "photo", type: "string" },
+    ],
+  },
+  {
     name: "todos",
     columns: [
       { name: "message", type: "string" },
@@ -16,34 +24,26 @@ const tables = [
       { name: "user", type: "link", link: { table: "users" } },
     ],
   },
-  {
-    name: "users",
-    columns: [
-      { name: "email", type: "email", unique: true },
-      { name: "slug", type: "string", unique: true },
-      { name: "photo", type: "string" },
-    ],
-  },
 ] as const;
 
 export type SchemaTables = typeof tables;
 export type InferredTypes = SchemaInference<SchemaTables>;
 
-export type Todos = InferredTypes["todos"];
-export type TodosRecord = Todos & XataRecord;
-
 export type Users = InferredTypes["users"];
 export type UsersRecord = Users & XataRecord;
 
+export type Todos = InferredTypes["todos"];
+export type TodosRecord = Todos & XataRecord;
+
 export type DatabaseSchema = {
-  todos: TodosRecord;
   users: UsersRecord;
+  todos: TodosRecord;
 };
 
 const DatabaseClient = buildClient();
 
 const defaultOptions = {
-  databaseURL: "https://atila-r3s7jg.eu-west-1.xata.sh/db/smashingnext",
+  databaseURL: "https://guilherme-nrb096.us-east-1.xata.sh/db/smashing",
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {

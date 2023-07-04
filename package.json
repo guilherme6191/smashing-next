@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "start:xata": "xata init --codegen=utils/xata.codegen.ts",

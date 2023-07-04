@@ -1,4 +1,4 @@
-import 'isomorphic-fetch'
+// import 'isomorphic-fetch'
 import { describe, expect, test } from 'vitest'
 import { csp } from '../lib/csp'
 import { securityHeaders } from '../lib/security-headers'

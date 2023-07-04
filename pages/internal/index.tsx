@@ -57,7 +57,7 @@ export const getServerSideProps = async ({
 
   return {
     props: {
-      user: session?.user,
+      user: session?.user || null,
       todos: await fetchTodos(session?.user.email),
     },
   }

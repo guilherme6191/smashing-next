@@ -1,4 +1,6 @@
+// import 'server-only'
 import { getXataClient, TodosRecord } from '~/lib/xata.codegen.server'
+
 const xata = getXataClient()
 
 export type TodoProps = {

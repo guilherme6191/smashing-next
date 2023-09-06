@@ -10,7 +10,7 @@ export const useAddTodo = (userEmail: string) => {
       await queryClient.cancelQueries(['todos'])
 
       const previousTodos = queryClient.getQueryData<TodoProps[]>(['todos'])
-
+      // optimistic update
       queryClient.setQueryData(['todos'], (old: TodoProps[]) => [
         newTodo,
         ...old,
@@ -20,6 +20,7 @@ export const useAddTodo = (userEmail: string) => {
     },
     onError: (err: Error, _newTodo, context) => {
       console.log(err)
+      // return previous data on error
       queryClient.setQueryData(['todos'], context.previousTodos)
     },
     onSettled: () => {

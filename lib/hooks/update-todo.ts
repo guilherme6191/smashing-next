@@ -10,7 +10,7 @@ export const useUpdateTodo = () => {
       await queryClient.cancelQueries(['todos', updatedTodo.id])
 
       const previousTodos = queryClient.getQueryData<TodoProps[]>(['todos'])
-
+      // optimistic update
       queryClient.setQueryData(['todos'], (list: TodoProps[]) => {
         return list.map((item) =>
           item.id === updatedTodo.id ? updatedTodo : item
@@ -25,6 +25,7 @@ export const useUpdateTodo = () => {
 
     onError: (err, _updatedTodo, context) => {
       console.log(err)
+      // return previous data on error
       queryClient.setQueryData(['todos'], context.previousTodos)
     },
   })
